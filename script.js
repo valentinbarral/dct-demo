@@ -2,7 +2,8 @@
 const translations = {
   es: {
     title: "Bloque 8×8 y DCT 2D",
-    instructions: '1️⃣ Elige un valor (0 = negro, 255 = blanco) y haz clic en las celdas para pintarlas.<br>2️⃣ Puedes arrastrar el cursor sobre las celdas para pintar múltiples cuadrados.<br>3️⃣ Pulsa <strong>"Calcular DCT 2D"</strong> para ver los coeficientes y las bases DCT multiplicadas por su coeficiente.',
+    introDesc: "Esta sección permite editar interactivamente los valores de los píxeles de un bloque de 8x8 y calcular su Transformada Discreta del Coseno (DCT) en 2D.",
+    dragInstruction: "Puedes arrastrar el cursor sobre las celdas para pintar múltiples cuadrados.",
     currentValue: "Valor actual:",
     fillButton: "Rellenar todo con valor actual",
     invertButton: "Invertir colores",
@@ -21,11 +22,29 @@ const translations = {
     allZero: "Todos los coeficientes son cero (o muy cercanos a cero).",
     originalBlock: "Bloque original",
     inFrequency: "(en frecuencia)",
-    absValueLabel: "Valor absoluto (amarillo = alto, verde = bajo, negro=0)"
+    absValueLabel: "Valor absoluto (amarillo = alto, verde = bajo, negro=0)",
+    quantTitle: "Cuantificación y Compresión JPEG",
+    quantDesc: "Simulación del proceso de cuantificación JPEG. Los coeficientes DCT se dividen por una matriz de cuantificación (escalada por un factor) y se redondean. Luego se reconstruye la imagen (IDCT) y se compara con la original.",
+    quantScaleLabel: "Factor de escala (Calidad):",
+    applyQuantButton: "Aplicar Cuantificación",
+    qMatrixTitle: "Matriz de Cuantificación (Q)",
+    originalDctTitle: "Coeficientes DCT Originales (S)",
+    quantCoeffsTitle: "Coeficientes Cuantizados (S<sup>Q</sup>)",
+    originalRefTitle: "Bloque Original (Ref)",
+    reconstructedTitle: "Bloque Reconstruido (IDCT)",
+    hoverOriginal: "Mantén el cursor para ver el original",
+    diffTitle: "Diferencia (Error)",
+    diffDesc: "Diferencia absoluta x10 para visibilidad",
+    themeDark: "Oscuro",
+    themeLight: "Claro",
+    showBasesButton: "Ver bases originales de la DCT",
+    basesPopupTitle: "Bases originales de la DCT",
+    basesPopupDesc: "Todas las bases de la DCT 2D 8×8."
   },
   en: {
     title: "8×8 Block and 2D DCT",
-    instructions: '1️⃣ Choose a value (0 = black, 255 = white) and click on cells to paint them.<br>2️⃣ You can drag the cursor over cells to paint multiple squares.<br>3️⃣ Click <strong>"Calculate 2D DCT"</strong> to see the coefficients and DCT bases multiplied by their coefficient.',
+    introDesc: "This section allows you to interactively edit pixel values of an 8x8 block and calculate its 2D Discrete Cosine Transform (DCT).",
+    dragInstruction: "You can drag the cursor over cells to paint multiple squares.",
     currentValue: "Current value:",
     fillButton: "Fill all with current value",
     invertButton: "Invert colors",
@@ -44,11 +63,29 @@ const translations = {
     allZero: "All coefficients are zero (or very close to zero).",
     originalBlock: "Original block",
     inFrequency: "(in frequency)",
-    absValueLabel: "Absolute value (yellow = high, green = low, black=0)"
+    absValueLabel: "Absolute value (yellow = high, green = low, black=0)",
+    quantTitle: "JPEG Quantization and Compression",
+    quantDesc: "Simulation of the JPEG quantization process. DCT coefficients are divided by a quantization matrix (scaled by a factor) and rounded. Then the image is reconstructed (IDCT) and compared with the original.",
+    quantScaleLabel: "Scale Factor (Quality):",
+    applyQuantButton: "Apply Quantization",
+    qMatrixTitle: "Quantization Matrix (Q)",
+    originalDctTitle: "Original DCT Coefficients (S)",
+    quantCoeffsTitle: "Quantized Coefficients (S<sup>Q</sup>)",
+    originalRefTitle: "Original Block (Ref)",
+    reconstructedTitle: "Reconstructed Block (IDCT)",
+    hoverOriginal: "Hover to see original",
+    diffTitle: "Difference (Error)",
+    diffDesc: "Absolute difference x10 for visibility",
+    themeDark: "Dark",
+    themeLight: "Light",
+    showBasesButton: "Show original DCT bases",
+    basesPopupTitle: "Original DCT Bases",
+    basesPopupDesc: "All 8×8 2D DCT bases."
   },
   gl: {
     title: "Bloque 8×8 e DCT 2D",
-    instructions: '1️⃣ Elixe un valor (0 = negro, 255 = branco) e fai clic nas celas para pintalas.<br>2️⃣ Podes arrastrar o cursor sobre as celas para pintar múltiples cadrados.<br>3️⃣ Preme <strong>"Calcular DCT 2D"</strong> para ver os coeficientes e as bases DCT multiplicadas polo seu coeficiente.',
+    introDesc: "Esta sección permite editar interactivamente os valores dos píxeles dun bloque de 8x8 e calcular a súa Transformada Discreta do Coseno (DCT) en 2D.",
+    dragInstruction: "Podes arrastrar o cursor sobre as celas para pintar múltiples cadrados.",
     currentValue: "Valor actual:",
     fillButton: "Encher todo co valor actual",
     invertButton: "Inverter cores",
@@ -67,7 +104,24 @@ const translations = {
     allZero: "Todos os coeficientes son cero (ou moi próximos a cero).",
     originalBlock: "Bloque orixinal",
     inFrequency: "(en frecuencia)",
-    absValueLabel: "Valor absoluto (amarelo = alto, verde = baixo, negro=0)"
+    absValueLabel: "Valor absoluto (amarelo = alto, verde = baixo, negro=0)",
+    quantTitle: "Cuantificación e Compresión JPEG",
+    quantDesc: "Simulación do proceso de cuantificación JPEG. Os coeficientes DCT divídense por unha matriz de cuantificación (escalada por un factor) e redondéanse. Logo reconstrúese a imaxe (IDCT) e compárase coa orixinal.",
+    quantScaleLabel: "Factor de escala (Calidade):",
+    applyQuantButton: "Aplicar Cuantificación",
+    qMatrixTitle: "Matriz de Cuantificación (Q)",
+    originalDctTitle: "Coeficientes DCT Orixinais (S)",
+    quantCoeffsTitle: "Coeficientes Cuantizados (S<sup>Q</sup>)",
+    originalRefTitle: "Bloque Orixinal (Ref)",
+    reconstructedTitle: "Bloque Reconstruído (IDCT)",
+    hoverOriginal: "Mantén o cursor para ver o orixinal",
+    diffTitle: "Diferenza (Erro)",
+    diffDesc: "Diferenza absoluta x10 para visibilidade",
+    themeDark: "Escuro",
+    themeLight: "Claro",
+    showBasesButton: "Ver bases orixinais da DCT",
+    basesPopupTitle: "Bases orixinais da DCT",
+    basesPopupDesc: "Todas as bases da DCT 2D 8×8."
   }
 };
 
@@ -80,18 +134,28 @@ function setLanguage(lang) {
   document.title = translations[lang].title + ' - Demo';
   languageSelector.value = lang;
   const t = translations[lang];
-  
+
   // Update static elements
   document.getElementById('title').innerHTML = t.title;
-  document.getElementById('instructions').innerHTML = t.instructions;
+  document.getElementById('introDesc').textContent = t.introDesc;
+  document.getElementById('dragInstruction').textContent = t.dragInstruction;
   document.getElementById('currentValueLabel').textContent = t.currentValue;
   document.getElementById('patternsLabel').textContent = t.patterns;
   document.getElementById('coeffTitle').innerHTML = t.coeffTitle;
   document.getElementById('reconstructionTitle').innerHTML = t.reconstructionTitle;
   document.getElementById('reconstructionDesc').textContent = t.reconstructionDesc;
-  document.getElementById('basesTitle').innerHTML = t.basesTitle;
-  document.getElementById('basesDesc').textContent = t.basesDesc;
-  
+
+  // Quantization section
+  document.getElementById('quantTitle').textContent = t.quantTitle;
+  document.getElementById('quantDesc').textContent = t.quantDesc;
+  document.getElementById('quantScaleLabel').textContent = t.quantScaleLabel;
+  document.getElementById('qMatrixTitle').textContent = t.qMatrixTitle;
+  document.getElementById('originalDctTitle').textContent = t.originalDctTitle;
+  document.getElementById('quantCoeffsTitle').innerHTML = t.quantCoeffsTitle;
+  document.getElementById('originalRefTitle').textContent = t.originalRefTitle;
+  document.getElementById('reconstructedTitle').textContent = t.reconstructedTitle;
+  document.getElementById('diffTitle').textContent = t.diffTitle;
+
   // Update buttons with data-i18n
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
@@ -99,7 +163,16 @@ function setLanguage(lang) {
       el.textContent = t[key];
     }
   });
-  
+
+  // Update theme selector options
+  if (themeSelector) {
+    // Assuming order: Dark, Light
+    if (themeSelector.options.length >= 2) {
+      themeSelector.options[0].textContent = translations[lang].themeDark;
+      themeSelector.options[1].textContent = translations[lang].themeLight;
+    }
+  }
+
   // Update dynamic content if DCT has been calculated
   if (lastS) {
     renderCoeffTable(lastS);
@@ -116,6 +189,7 @@ let block = Array.from({ length: N }, () => Array(N).fill(128));
 let isPainting = false;
 let currentValue = 128;
 let lastS = null;
+let lastBlock = null;
 
 const inputGrid = document.getElementById('inputGrid');
 const slider = document.getElementById('valueSlider');
@@ -123,8 +197,69 @@ const valueLabel = document.getElementById('valueLabel');
 const coeffContainer = document.getElementById('coeffContainer');
 const basisContainer = document.getElementById('basisContainer');
 const sumVisualization = document.getElementById('sumVisualization');
-const originalBasisContainer = document.getElementById('originalBasisContainer');
+// const originalBasisContainer = document.getElementById('originalBasisContainer'); // Removed from main flow
+const popupBasisContainer = document.getElementById('popupBasisContainer');
 const languageSelector = document.getElementById('languageSelector');
+const themeSelector = document.getElementById('themeSelector');
+const quantScaleSlider = document.getElementById('quantScaleSlider');
+const showBasesButton = document.getElementById('showBasesButton');
+const basesPopup = document.getElementById('basesPopup');
+const closeBasesPopup = document.getElementById('closeBasesPopup');
+
+// Popup logic
+if (showBasesButton) {
+  showBasesButton.addEventListener('click', () => {
+    renderPopupBases();
+    basesPopup.style.display = 'flex';
+  });
+}
+
+if (closeBasesPopup) {
+  closeBasesPopup.addEventListener('click', () => {
+    basesPopup.style.display = 'none';
+  });
+}
+
+// Close popup when clicking outside content
+if (basesPopup) {
+  basesPopup.addEventListener('click', (e) => {
+    if (e.target === basesPopup) {
+      basesPopup.style.display = 'none';
+    }
+  });
+}
+
+// Helper function to update slider background
+function updateSliderBackground(sliderElement) {
+  const min = parseFloat(sliderElement.min);
+  const max = parseFloat(sliderElement.max);
+  const val = parseFloat(sliderElement.value);
+  // If min and max are equal, avoid division by zero (though unlikely for sliders)
+  const range = (max - min) || 1;
+  const percent = ((val - min) / range) * 100;
+  
+  sliderElement.style.background = `linear-gradient(to right, var(--accent-primary) ${percent}%, var(--accent-secondary) ${percent}%)`;
+}
+
+// Theme logic
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  if (themeSelector) themeSelector.value = theme;
+  localStorage.setItem('theme', theme);
+  // Update slider backgrounds on theme change (to pick up new variables if needed, though they use CSS vars directly)
+  if (slider) updateSliderBackground(slider);
+  if (quantScaleSlider) updateSliderBackground(quantScaleSlider);
+}
+
+// Initialize theme
+const savedTheme = localStorage.getItem('theme') || 'dark';
+setTheme(savedTheme);
+
+if (themeSelector) {
+  themeSelector.addEventListener('change', (e) => {
+    setTheme(e.target.value);
+  });
+}
 
 // Language selector
 if (languageSelector) {
@@ -144,7 +279,11 @@ if (document.readyState === 'loading') {
 slider.addEventListener('input', () => {
   valueLabel.textContent = slider.value;
   currentValue = parseInt(slider.value, 10);
+  updateSliderBackground(slider);
 });
+
+// Init slider background
+if (slider) updateSliderBackground(slider);
 
 // Función para pintar una celda
 function paintCell(x, y, value) {
@@ -165,26 +304,26 @@ function createInputGrid() {
       cell.dataset.x = x;
       cell.dataset.y = y;
       updateCellColor(cell, block[x][y]);
-      
+
       // Click para pintar
       cell.addEventListener('click', () => {
         paintCell(x, y, currentValue);
       });
-      
+
       // Mouse down para iniciar arrastre
       cell.addEventListener('mousedown', (e) => {
         e.preventDefault();
         isPainting = true;
         paintCell(x, y, currentValue);
       });
-      
+
       // Mouse enter mientras se arrastra
       cell.addEventListener('mouseenter', () => {
         if (isPainting) {
           paintCell(x, y, currentValue);
         }
       });
-      
+
       inputGrid.appendChild(cell);
     }
   }
@@ -360,15 +499,15 @@ function mapCoeffToColor(absValue) {
   if (absValue < 0.001) {
     return { r: 0, g: 0, b: 0 }; // Negro para valores muy pequeños
   }
-  
+
   const maxValue = 1020;
   const normalized = Math.min(1, Math.max(0, absValue / maxValue)); // [0, 1]
-  
+
   // Degradado: amarillo (máximo) → verde oscuro (mínimo)
   // Amarillo: (255, 255, 0)
   // Verde oscuro: (0, 100, 0)
   // Interpolación lineal de amarillo a verde oscuro
-  
+
   const t = normalized; // [0, 1], donde 1 = máximo (amarillo), 0 = mínimo (verde oscuro)
   return {
     r: Math.round(255 * t), // De 0 (verde oscuro) a 255 (amarillo)
@@ -378,35 +517,6 @@ function mapCoeffToColor(absValue) {
 }
 
 function renderCoeffTable(S) {
-  const table = document.createElement('table');
-  table.id = 'coeffTable';
-
-  // Cabecera columnas v
-  const headerRow = document.createElement('tr');
-  const corner = document.createElement('th');
-  corner.textContent = 'u\\v';
-  headerRow.appendChild(corner);
-  for (let v = 0; v < N; v++) {
-    const th = document.createElement('th');
-    th.textContent = v;
-    headerRow.appendChild(th);
-  }
-  table.appendChild(headerRow);
-
-  // Filas
-  for (let u = 0; u < N; u++) {
-    const tr = document.createElement('tr');
-    const th = document.createElement('th');
-    th.textContent = u;
-    tr.appendChild(th);
-    for (let v = 0; v < N; v++) {
-      const td = document.createElement('td');
-      td.textContent = S[u][v].toFixed(1);
-      tr.appendChild(td);
-    }
-    table.appendChild(tr);
-  }
-
   // Crear contenedor flex para tabla y visualización
   const flexContainer = document.createElement('div');
   flexContainer.style.display = 'flex';
@@ -414,10 +524,36 @@ function renderCoeffTable(S) {
   flexContainer.style.alignItems = 'flex-start';
   flexContainer.style.flexWrap = 'wrap';
 
-  // Añadir tabla
-  flexContainer.appendChild(table);
+  // --- Tabla estilo Matriz (como en cuantificación) ---
+  const tableContainer = document.createElement('div');
+  const table = document.createElement('table');
+  table.style.borderCollapse = 'collapse';
+  table.style.fontSize = '0.8rem';
 
-  // Crear visualización de píxeles (cuadrícula 8x8)
+  for (let u = 0; u < N; u++) {
+    const tr = document.createElement('tr');
+    for (let v = 0; v < N; v++) {
+      const td = document.createElement('td');
+      td.textContent = S[u][v].toFixed(1);
+      td.style.border = '1px solid var(--border-color)';
+      td.style.padding = '4px';
+      td.style.textAlign = 'center';
+      td.style.minWidth = '24px';
+
+      // Highlight zeros slightly
+      if (Math.abs(S[u][v]) < 0.1) {
+        td.style.color = 'var(--text-secondary)';
+        td.style.opacity = '0.5';
+      }
+
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  tableContainer.appendChild(table);
+  flexContainer.appendChild(tableContainer);
+
+  // --- Visualización de píxeles (Heatmap) ---
   const pixelGrid = document.createElement('div');
   pixelGrid.className = 'grid-8x8';
   pixelGrid.style.pointerEvents = 'none'; // Solo lectura
@@ -460,6 +596,7 @@ function renderCoeffTable(S) {
 
   flexContainer.appendChild(pixelContainer);
 
+  const coeffContainer = document.getElementById('coeffContainer');
   coeffContainer.innerHTML = '';
   coeffContainer.appendChild(flexContainer);
 }
@@ -538,7 +675,7 @@ function drawBasisOnCanvas(canvas, values) {
   // Normalizar al rango [-1, 1]
   // Si todos los valores son iguales (como la base DC), mostrar gris (valor 0)
   const range = max - min;
-  
+
   for (let x = 0; x < N; x++) {
     for (let y = 0; y < N; y++) {
       let normalized;
@@ -646,7 +783,7 @@ function renderBasisContributions(S) {
   if (nonZeroContributions.length === 0) {
     const msg = document.createElement('p');
     msg.textContent = t('allZero');
-    msg.style.color = '#666';
+    msg.style.color = 'var(--text-secondary)';
     basisContainer.appendChild(msg);
   }
 
@@ -665,7 +802,7 @@ function renderBasisContributions(S) {
     originalCanvas.width = 80;
     originalCanvas.height = 80;
     drawOriginalBlockOnCanvas(originalCanvas, block);
-    originalCanvas.style.border = '2px solid #333';
+    originalCanvas.style.border = '2px solid var(--text-secondary)';
     originalCanvas.style.borderRadius = '4px';
 
     // Signo igual con etiqueta "en frecuencia" debajo
@@ -680,13 +817,13 @@ function renderBasisContributions(S) {
     equalsSign.textContent = '=';
     equalsSign.style.fontSize = '1.8rem';
     equalsSign.style.fontWeight = 'bold';
-    equalsSign.style.color = '#333';
+    equalsSign.style.color = 'var(--text-primary)';
     equalsSign.style.lineHeight = '1';
 
     const freqLabel = document.createElement('div');
     freqLabel.textContent = t('inFrequency');
     freqLabel.style.fontSize = '0.75rem';
-    freqLabel.style.color = '#666';
+    freqLabel.style.color = 'var(--text-secondary)';
     freqLabel.style.marginTop = '4px';
 
     equalsWrapper.appendChild(equalsSign);
@@ -729,7 +866,7 @@ function renderBasisContributions(S) {
       basisCanvas.width = 80;
       basisCanvas.height = 80;
       drawBasisOnCanvas(basisCanvas, bases[contrib.u][contrib.v]);
-      basisCanvas.style.border = '2px solid #333';
+      basisCanvas.style.border = '2px solid var(--text-secondary)';
       basisCanvas.style.borderRadius = '4px';
 
       // Contenedor para el término completo
@@ -759,34 +896,34 @@ function renderBasisContributions(S) {
 }
 
 // Renderizar las bases originales de la DCT (sin coeficientes)
-function renderOriginalBases() {
-  originalBasisContainer.innerHTML = '';
+function renderPopupBases() {
+  // Solo renderizar si está vacío para no rehacerlo cada vez
+  if (popupBasisContainer.innerHTML !== '') return;
+  
+  popupBasisContainer.innerHTML = '';
 
   for (let u = 0; u < N; u++) {
     for (let v = 0; v < N; v++) {
-      const item = document.createElement('div');
-      item.className = 'basis-item';
-
       const canvas = document.createElement('canvas');
       canvas.width = 64;
       canvas.height = 64;
+      canvas.title = `B(${u},${v})`; // Tooltip con índice
 
       // Dibujar la base original B_{u,v}(x,y) sin multiplicar por coeficiente
-      // Usar drawBasisOnCanvas para mapear correctamente [-1,1] a [0,255]
       drawBasisOnCanvas(canvas, bases[u][v]);
-
-      const label = document.createElement('div');
-      label.innerHTML = `B<sub>${u},${v}</sub>(x,y)`;
-
-      item.appendChild(canvas);
-      item.appendChild(label);
-      originalBasisContainer.appendChild(item);
+      
+      popupBasisContainer.appendChild(canvas);
     }
   }
 }
 
 // Botón principal
 document.getElementById('dctButton').addEventListener('click', () => {
+  // Show results panels
+  document.querySelectorAll('.results-panel').forEach(panel => {
+    panel.style.display = 'block';
+  });
+
   const S = dct2D(block);
   lastS = S;
   renderCoeffTable(S);
@@ -795,5 +932,331 @@ document.getElementById('dctButton').addEventListener('click', () => {
 
 // Inicializar
 createInputGrid();
-renderOriginalBases();
+// renderOriginalBases(); // No longer needed on init
 
+// --- Quantization & JPEG Compression Logic ---
+
+// Standard JPEG Luminance Quantization Matrix
+const Q_jpeg = [
+  [16, 11, 10, 16, 24, 40, 51, 61],
+  [12, 12, 14, 19, 26, 58, 60, 55],
+  [14, 13, 16, 24, 40, 57, 69, 56],
+  [14, 17, 22, 29, 51, 87, 80, 62],
+  [18, 22, 37, 56, 68, 109, 103, 77],
+  [24, 35, 55, 64, 81, 104, 113, 92],
+  [49, 64, 78, 87, 103, 121, 120, 101],
+  [72, 92, 95, 98, 112, 100, 103, 99]
+];
+
+// Zig-zag scan pattern for 8x8 matrix (JPEG standard)
+const zigzagOrder = [
+  [0, 0], [0, 1], [1, 0], [2, 0], [1, 1], [0, 2], [0, 3], [1, 2],
+  [2, 1], [3, 0], [4, 0], [3, 1], [2, 2], [1, 3], [0, 4], [0, 5],
+  [1, 4], [2, 3], [3, 2], [4, 1], [5, 0], [6, 0], [5, 1], [4, 2],
+  [3, 3], [2, 4], [1, 5], [0, 6], [0, 7], [1, 6], [2, 5], [3, 4],
+  [4, 3], [5, 2], [6, 1], [7, 0], [7, 1], [6, 2], [5, 3], [4, 4],
+  [3, 5], [2, 6], [1, 7], [2, 7], [3, 6], [4, 5], [5, 4], [6, 3],
+  [7, 2], [7, 3], [6, 4], [5, 5], [4, 6], [3, 7], [4, 7], [5, 6],
+  [6, 5], [7, 4], [7, 5], [6, 6], [5, 7], [6, 7], [7, 6], [7, 7]
+];
+
+// Calculate RLE byte estimation for a coefficient matrix
+// This simulates the JPEG RLE encoding process
+function calculateRLEByteEstimation(matrix) {
+  // Convert matrix to zig-zag order
+  const zigzagValues = zigzagOrder.map(([i, j]) => Math.round(matrix[i][j]));
+
+  let byteCount = 0;
+  let zeroRunLength = 0;
+
+  for (let i = 0; i < zigzagValues.length; i++) {
+    const value = zigzagValues[i];
+
+    if (value === 0) {
+      zeroRunLength++;
+
+      // If we have 16 zeros in a row, encode as ZRL (Zero Run Length) symbol
+      if (zeroRunLength === 16) {
+        byteCount += 2; // ZRL symbol is typically 2 bytes
+        zeroRunLength = 0;
+      }
+    } else {
+      // Non-zero coefficient
+      // Format: (run_length, size, value)
+      // run_length: number of zeros before this coefficient (4 bits)
+      // size: number of bits needed to represent the value (4 bits)
+      // value: the actual coefficient value (variable bits)
+
+      const absValue = Math.abs(value);
+      const bitsNeeded = absValue === 0 ? 0 : Math.floor(Math.log2(absValue)) + 1;
+
+      // Symbol byte: (run_length << 4) | size
+      byteCount += 1; // Symbol byte
+
+      // Value bytes: actual coefficient
+      byteCount += Math.ceil(bitsNeeded / 8);
+
+      zeroRunLength = 0;
+    }
+  }
+
+  // If the remaining coefficients are all zeros, we add EOB (End of Block)
+  if (zeroRunLength > 0) {
+    byteCount += 1; // EOB is typically 1 byte
+  }
+
+  return byteCount;
+}
+
+// Inverse DCT 2D
+function idct2D(S) {
+  const output = Array.from({ length: N }, () => Array(N).fill(0));
+  const pi = Math.PI;
+
+  for (let x = 0; x < N; x++) {
+    for (let y = 0; y < N; y++) {
+      let sum = 0;
+      for (let u = 0; u < N; u++) {
+        for (let v = 0; v < N; v++) {
+          const Cu = (u === 0) ? 1 / Math.sqrt(2) : 1;
+          const Cv = (v === 0) ? 1 / Math.sqrt(2) : 1;
+          const cosX = Math.cos(((2 * x + 1) * u * pi) / (2 * N));
+          const cosY = Math.cos(((2 * y + 1) * v * pi) / (2 * N));
+          sum += Cu * Cv * S[u][v] * cosX * cosY;
+        }
+      }
+      output[x][y] = 0.25 * sum;
+    }
+  }
+  return output;
+}
+
+// Apply Quantization
+function applyQuantization(S, scale) {
+  const Q_scaled = Array.from({ length: N }, () => Array(N).fill(0));
+  const S_quant = Array.from({ length: N }, () => Array(N).fill(0));
+  const S_recon = Array.from({ length: N }, () => Array(N).fill(0));
+
+  for (let u = 0; u < N; u++) {
+    for (let v = 0; v < N; v++) {
+      // Scale Q matrix
+      // Note: In real JPEG, scaling is more complex, but linear scaling is a good approximation for demo
+      let qVal = Math.floor(Q_jpeg[u][v] * scale);
+      if (qVal < 1) qVal = 1;
+      Q_scaled[u][v] = qVal;
+
+      // Quantize: Round(S / Q)
+      S_quant[u][v] = Math.round(S[u][v] / qVal);
+
+      // Dequantize: S' = S_quant * Q
+      S_recon[u][v] = S_quant[u][v] * qVal;
+    }
+  }
+  return { Q_scaled, S_quant, S_recon };
+}
+
+// Render a simple table for matrices
+function renderMatrixTable(matrix, containerId, titleStr) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+
+  const table = document.createElement('table');
+  table.style.borderCollapse = 'collapse';
+  table.style.fontSize = '0.8rem';
+
+  for (let i = 0; i < N; i++) {
+    const tr = document.createElement('tr');
+    for (let j = 0; j < N; j++) {
+      const td = document.createElement('td');
+      td.textContent = matrix[i][j];
+      td.style.border = '1px solid var(--border-color)';
+      td.style.padding = '4px';
+      td.style.textAlign = 'center';
+      td.style.minWidth = '24px';
+
+      // Highlight zeros in quantized matrix for visibility
+      if (matrix[i][j] === 0) {
+        td.style.color = 'var(--text-secondary)';
+        td.style.opacity = '0.5';
+      }
+
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  container.appendChild(table);
+}
+
+// Render difference map
+function renderDifference(original, reconstructed) {
+  const container = document.getElementById('diffContainer');
+  container.innerHTML = '';
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 128;
+  canvas.height = 128;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width;
+  const h = canvas.height;
+  const cellW = w / N;
+  const cellH = h / N;
+
+  // Calculate differences
+  let maxDiff = 0;
+  const diffs = Array.from({ length: N }, () => Array(N).fill(0));
+
+  for (let x = 0; x < N; x++) {
+    for (let y = 0; y < N; y++) {
+      const diff = Math.abs(original[x][y] - reconstructed[x][y]);
+      diffs[x][y] = diff;
+      if (diff > maxDiff) maxDiff = diff;
+    }
+  }
+
+  // Draw
+  for (let x = 0; x < N; x++) {
+    for (let y = 0; y < N; y++) {
+      // Amplify difference for visibility (e.g. x10), clamp to 255
+      // Display as heat map: Black (0) -> Red (High error)
+      const val = Math.min(255, diffs[x][y] * 10);
+      ctx.fillStyle = `rgb(${val}, 0, 0)`;
+      ctx.fillRect(y * cellW, x * cellH, cellW, cellH);
+    }
+  }
+
+  container.appendChild(canvas);
+
+  const label = document.createElement('div');
+  label.textContent = `Max Diff: ${maxDiff.toFixed(1)}`;
+  label.style.fontSize = '0.8rem';
+  label.style.marginTop = '5px';
+  label.style.textAlign = 'center';
+  container.appendChild(label);
+
+  const desc = document.createElement('div');
+  desc.textContent = t('diffDesc');
+  desc.style.fontSize = '0.7rem';
+  desc.style.color = '#666';
+  desc.style.textAlign = 'center';
+  container.appendChild(desc);
+}
+
+// Main function to update quantization panel
+function updateQuantizationPanel() {
+  if (!lastS || !lastBlock) return;
+
+  const quantSlider = document.getElementById('quantScaleSlider');
+  const scale = parseFloat(quantSlider.value);
+  document.getElementById('quantScaleValue').textContent = scale.toFixed(1);
+  updateSliderBackground(quantSlider);
+
+  const { Q_scaled, S_quant, S_recon } = applyQuantization(lastS, scale);
+
+  // 0. Show Original DCT Coefficients
+  // Create a rounded version for display (to match the look of quantized ones)
+  const S_rounded = lastS.map(row => row.map(val => Math.round(val)));
+  renderMatrixTable(S_rounded, 'originalDctContainer');
+
+  // 1. Show Q Matrix
+  renderMatrixTable(Q_scaled, 'qMatrixContainer');
+
+  // 2. Show Quantized Coefficients
+  renderMatrixTable(S_quant, 'quantCoeffsContainer');
+
+  // 3. Show Original Block (Reference)
+  const originalRefContainer = document.getElementById('originalRefContainer');
+  originalRefContainer.innerHTML = '';
+  const originalCanvas = document.createElement('canvas');
+  originalCanvas.width = 128;
+  originalCanvas.height = 128;
+  drawOriginalBlockOnCanvas(originalCanvas, lastBlock);
+  originalRefContainer.appendChild(originalCanvas);
+
+  // Add RLE byte estimation for original DCT
+  const originalRleBytes = calculateRLEByteEstimation(lastS);
+  const originalRleLabel = document.createElement('div');
+  originalRleLabel.textContent = `RLE: ~${originalRleBytes} bytes`;
+  originalRleLabel.style.fontSize = '0.85rem';
+  originalRleLabel.style.marginTop = '8px';
+  originalRleLabel.style.fontWeight = '600';
+  originalRleLabel.style.color = '#1e40af';
+  originalRleLabel.style.textAlign = 'center';
+  originalRefContainer.appendChild(originalRleLabel);
+
+  // 4. Reconstruct Image (IDCT)
+  const reconstructedBlock = idct2D(S_recon);
+
+  // Render Reconstructed Block
+  const reconContainer = document.getElementById('reconstructedContainer');
+  reconContainer.innerHTML = '';
+  const reconCanvas = document.createElement('canvas');
+  reconCanvas.width = 128;
+  reconCanvas.height = 128;
+
+  // Use drawOriginalBlockOnCanvas for consistent [0,255] rendering
+  drawOriginalBlockOnCanvas(reconCanvas, reconstructedBlock);
+
+  // Add hover effect to show original
+  reconCanvas.style.cursor = 'pointer';
+  reconCanvas.title = t('hoverOriginal');
+
+  reconCanvas.addEventListener('mouseenter', () => {
+    drawOriginalBlockOnCanvas(reconCanvas, lastBlock);
+  });
+
+  reconCanvas.addEventListener('mouseleave', () => {
+    drawOriginalBlockOnCanvas(reconCanvas, reconstructedBlock);
+  });
+
+  reconContainer.appendChild(reconCanvas);
+
+  // Add RLE byte estimation for quantized coefficients
+  const quantRleBytes = calculateRLEByteEstimation(S_quant);
+  const quantRleLabel = document.createElement('div');
+  quantRleLabel.textContent = `RLE: ~${quantRleBytes} bytes`;
+  quantRleLabel.style.fontSize = '0.85rem';
+  quantRleLabel.style.marginTop = '8px';
+  quantRleLabel.style.fontWeight = '600';
+  quantRleLabel.style.color = '#15803d';
+  quantRleLabel.style.textAlign = 'center';
+  reconContainer.appendChild(quantRleLabel);
+
+  // Add compression ratio information
+  if (originalRleBytes > 0) {
+    const compressionRatio = ((1 - quantRleBytes / originalRleBytes) * 100).toFixed(1);
+    const compressionInfo = document.createElement('div');
+    compressionInfo.textContent = `${compressionRatio}% reducción`;
+    compressionInfo.style.fontSize = '0.75rem';
+    compressionInfo.style.marginTop = '4px';
+    compressionInfo.style.color = '#16a34a';
+    compressionInfo.style.textAlign = 'center';
+    reconContainer.appendChild(compressionInfo);
+  }
+
+  // 5. Show Difference
+  renderDifference(lastBlock, reconstructedBlock);
+}
+
+// Event Listeners for Quantization
+document.getElementById('quantScaleSlider').addEventListener('input', (e) => {
+  document.getElementById('quantScaleValue').textContent = parseFloat(e.target.value).toFixed(1);
+  updateSliderBackground(e.target);
+});
+
+// Initialize quant scale slider background
+if (quantScaleSlider) updateSliderBackground(quantScaleSlider);
+
+document.getElementById('applyQuantButton').addEventListener('click', () => {
+  updateQuantizationPanel();
+});
+
+// Hook into the main DCT button to also update quantization if visible
+const originalDctBtn = document.getElementById('dctButton');
+// We can't easily remove the anonymous listener, but we can add another one
+originalDctBtn.addEventListener('click', () => {
+  // Capture the current block state when DCT is calculated
+  lastBlock = block.map(row => [...row]);
+
+  // Wait a bit for lastS to be updated
+  setTimeout(updateQuantizationPanel, 0);
+});

@@ -1,84 +1,169 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Demo DCT 2D 8x8</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<div style="text-align: right; padding: 10px 20px;">
-  <select id="languageSelector" style="font-size: 0.9rem; padding: 4px 8px; border: 1px solid #ddd; border-radius: 4px;">
-    <option value="es">Es</option>
-    <option value="en">En</option>
-    <option value="gl">Gl</option>
-  </select>
-</div>
-
-<div class="panel">
-  <h1 id="title">Bloque 8×8 y DCT 2D</h1>
-  <p id="instructions">
-    1️⃣ Elige un valor (0 = negro, 255 = blanco) y haz clic en las celdas para pintarlas.<br>
-    2️⃣ Puedes arrastrar el cursor sobre las celdas para pintar múltiples cuadrados.<br>
-    3️⃣ Pulsa <strong id="calcButtonText">"Calcular DCT 2D"</strong> para ver los coeficientes y las bases DCT
-    multiplicadas por su coeficiente.
-  </p>
-  <div id="inputGrid" class="grid-8x8"></div>
-
-  <div class="controls">
-    <label>
-      <span id="currentValueLabel">Valor actual:</span>
-      <input type="range" id="valueSlider" min="0" max="255" value="128">
-      <span id="valueLabel">128</span>
-    </label>
-    <button id="fillButton" class="secondary" data-i18n="fillButton">Rellenar todo con valor actual</button>
-    <button id="invertButton" class="secondary" data-i18n="invertButton">Invertir colores</button>
-    <button id="dctButton" data-i18n="dctButton">Calcular DCT 2D</button>
+  <div style="max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; position: relative; padding-bottom: 10px;">
+    <h1 style="margin: 0; font-size: 1.8rem; color: var(--text-primary); position: absolute; left: 50%; transform: translateX(-50%); width: max-content;">DCT Demo</h1>
+    <div style="display: flex; gap: 10px;">
+      <select id="themeSelector" style="font-size: 0.9rem; padding: 4px 8px; border: 1px solid #ddd; border-radius: 4px;">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+      </select>
+      <select id="languageSelector"
+        style="font-size: 0.9rem; padding: 4px 8px; border: 1px solid #ddd; border-radius: 4px;">
+        <option value="es">Es</option>
+        <option value="en">En</option>
+        <option value="gl">Gl</option>
+      </select>
+    </div>
   </div>
-  <div class="controls" style="margin-top: 10px;">
-    <span style="font-weight: 600; margin-right: 8px;" id="patternsLabel">Patrones:</span>
-    <button id="gradientHButton" class="secondary" data-i18n="gradientHButton">Degradado horizontal</button>
-    <button id="gradientVButton" class="secondary" data-i18n="gradientVButton">Degradado vertical</button>
-    <button id="chessButton" class="secondary" data-i18n="chessButton">Tablero de ajedrez</button>
-    <button id="diagonalButton" class="secondary" data-i18n="diagonalButton">Diagonal</button>
-    <button id="circleButton" class="secondary" data-i18n="circleButton">Círculo</button>
+
+  <div class="panel">
+    <h1 id="title">Bloque 8×8 y DCT 2D</h1>
+    <p id="introDesc" class="small-label">Esta sección permite editar interactivamente los valores de los píxeles de un bloque de 8x8 y calcular su Transformada Discreta del Coseno (DCT) en 2D.</p>
+    <div id="inputGrid" class="grid-8x8"></div>
+    <p id="dragInstruction" style="text-align: center; font-size: 0.9rem; color: var(--text-secondary); margin-top: 10px; margin-bottom: 20px;">
+      Puedes arrastrar el cursor sobre las celdas para pintar múltiples cuadrados.
+    </p>
+
+    <div class="controls">
+      <label>
+        <span id="currentValueLabel">Valor actual:</span>
+        <input type="range" id="valueSlider" min="0" max="255" value="128">
+        <span id="valueLabel">128</span>
+      </label>
+      <button id="fillButton" class="secondary" data-i18n="fillButton">Rellenar todo con valor actual</button>
+      <button id="invertButton" class="secondary" data-i18n="invertButton">Invertir colores</button>
+      <button id="dctButton" data-i18n="dctButton">Calcular DCT 2D</button>
+    </div>
+    <div class="controls" style="margin-top: 10px;">
+      <span style="font-weight: 600; margin-right: 8px;" id="patternsLabel">Patrones:</span>
+      <button id="gradientHButton" class="secondary" data-i18n="gradientHButton">Degradado horizontal</button>
+      <button id="gradientVButton" class="secondary" data-i18n="gradientVButton">Degradado vertical</button>
+      <button id="chessButton" class="secondary" data-i18n="chessButton">Tablero de ajedrez</button>
+      <button id="diagonalButton" class="secondary" data-i18n="diagonalButton">Diagonal</button>
+      <button id="circleButton" class="secondary" data-i18n="circleButton">Círculo</button>
+    </div>
   </div>
-</div>
 
-<div class="panel">
-  <h2 id="coeffTitle">Coeficientes DCT S<sub>u,v</sub></h2>
-  <div id="coeffContainer"></div>
-</div>
-
-<div class="panel">
-  <h2 id="reconstructionTitle">Reconstrucción del bloque: Bloque original = Σ S<sub>u,v</sub> · B<sub>u,v</sub>(x,y)</h2>
-  <p class="small-label" id="reconstructionDesc">
-    El bloque original (en el dominio espacial) es igual a la suma de las bases DCT multiplicadas por sus coeficientes (solo se muestran los términos con coeficiente ≠ 0).
-  </p>
-  <div id="basisContainer" class="basis-grid"></div>
-  <div id="sumContainer" style="margin-top: 20px;">
-    <div id="sumVisualization"></div>
+  <div class="panel results-panel">
+    <h2 id="coeffTitle">Coeficientes DCT S<sub>u,v</sub></h2>
+    <div id="coeffContainer"></div>
   </div>
-</div>
 
-<div class="panel">
-  <h2 id="basesTitle">Bases originales de la DCT: B<sub>u,v</sub>(x,y) (referencia)</h2>
-  <p class="small-label" id="basesDesc">
-    Todas las bases de la DCT 2D 8×8. Estas son las funciones base que se combinan para representar cualquier bloque 8×8.
-  </p>
-  <div id="originalBasisContainer" class="basis-grid"></div>
-</div>
+  <div class="panel results-panel">
+    <h2 id="reconstructionTitle">Reconstrucción del bloque: Bloque original = Σ S<sub>u,v</sub> · B<sub>u,v</sub>(x,y)
+    </h2>
+    <p class="small-label" id="reconstructionDesc">
+      El bloque original (en el dominio espacial) es igual a la suma de las bases DCT multiplicadas por sus coeficientes
+      (solo se muestran los términos con coeficiente ≠ 0).
+    </p>
+    <button id="showBasesButton" class="secondary" style="margin-bottom: 20px;" data-i18n="showBasesButton">Ver bases originales de la DCT</button>
+    <div id="basisContainer" class="basis-grid"></div>
+    <div id="sumContainer" style="margin-top: 20px;">
+      <div id="sumVisualization"></div>
+    </div>
+  </div>
 
-<footer style="text-align: center; padding: 20px; margin-top: 20px; color: #666; font-size: 0.85rem; border-top: 1px solid #ddd;">
-  <p>
-    This work is licensed under a 
-    <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license">Creative Commons Attribution 4.0 International License</a>.
-    <br>
-    © 2025 <a href="#" rel="author">Valentin Barral</a>
-  </p>
-</footer>
+  <div class="panel results-panel">
+    <h2 id="quantTitle">Cuantificación y Compresión JPEG</h2>
+    <p class="small-label" id="quantDesc">
+      Simulación del proceso de cuantificación JPEG. Los coeficientes DCT se dividen por una matriz de cuantificación
+      (escalada por un factor) y se redondean. Luego se reconstruye la imagen (IDCT) y se compara con la original.
+    </p>
 
-<script src="script.js"></script>
+    <div class="controls" style="margin-bottom: 20px;">
+      <label>
+        <span id="quantScaleLabel">Factor de escala (Calidad):</span>
+        <input type="range" id="quantScaleSlider" min="0.1" max="5.0" step="0.1" value="1.0">
+        <span id="quantScaleValue">1.0</span>
+      </label>
+      <button id="applyQuantButton" data-i18n="applyQuantButton">Aplicar Cuantificación</button>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-around;">
+
+      <!-- Original DCT Coefficients -->
+      <div>
+        <h3 id="originalDctTitle" style="font-size: 1rem; margin-bottom: 10px;">Coeficientes DCT Originales (S)</h3>
+        <div id="originalDctContainer"></div>
+      </div>
+
+      <!-- Matriz Q -->
+      <div>
+        <h3 id="qMatrixTitle" style="font-size: 1rem; margin-bottom: 10px;">Matriz de Cuantificación (Q)</h3>
+        <div id="qMatrixContainer"></div>
+      </div>
+
+      <!-- Coeficientes Cuantizados -->
+      <div>
+        <h3 id="quantCoeffsTitle" style="font-size: 1rem; margin-bottom: 10px;">Coeficientes Cuantizados (S<sup>Q</sup>)
+        </h3>
+        <div id="quantCoeffsContainer"></div>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 30px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-around;">
+
+      <!-- Original (Referencia) -->
+      <div>
+        <h3 id="originalRefTitle" style="font-size: 1rem; margin-bottom: 10px;">Bloque Original (Ref)</h3>
+        <div id="originalRefContainer"></div>
+      </div>
+
+      <!-- Reconstrucción -->
+      <div>
+        <h3 id="reconstructedTitle" style="font-size: 1rem; margin-bottom: 10px;">Bloque Reconstruido (IDCT)</h3>
+        <div id="reconstructedContainer"></div>
+      </div>
+
+      <!-- Diferencia -->
+      <div>
+        <h3 id="diffTitle" style="font-size: 1rem; margin-bottom: 10px;">Diferencia (Error)</h3>
+        <div id="diffContainer"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer
+    style="text-align: center; padding: 20px; margin-top: 20px; color: #666; font-size: 0.85rem;">
+    <p>
+      This work is licensed under a
+      <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license">Creative Commons Attribution
+        4.0 International License</a>.
+      <br>
+      © 2025 <a href="#" rel="author">Valentin Barral</a>
+    </p>
+  </footer>
+
+  <!-- Bases Popup -->
+  <div id="basesPopup" class="popup-overlay" style="display: none;">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h2 data-i18n="basesPopupTitle">Bases originales de la DCT</h2>
+        <button id="closeBasesPopup" class="close-button">&times;</button>
+      </div>
+      <p class="small-label" data-i18n="basesPopupDesc" style="margin-bottom: 20px;">
+        Todas las bases de la DCT 2D 8×8.
+      </p>
+      <div id="popupBasisContainer" class="basis-grid-popup"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 
 </body>
+
 </html>
